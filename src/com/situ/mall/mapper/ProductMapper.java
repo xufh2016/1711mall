@@ -2,8 +2,6 @@ package com.situ.mall.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.situ.mall.bean.Product;
 
 public interface ProductMapper {
@@ -19,5 +17,5 @@ public interface ProductMapper {
 
 	int updateByPrimaryKey(Product record);
 
-	List<Product> pageList(@Param("page") Integer page, @Param("limit") Integer limit);
+	List<Product> pageList(Product product);
 }

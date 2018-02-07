@@ -18,10 +18,10 @@ public class ProductServiceImpl implements IProductService {
 	@Autowired
 	private ProductMapper productMapper;
 	@Override
-	public ServerResponse<List<Product>> pageList(Integer page, Integer limit) {
+	public ServerResponse<List<Product>> pageList(Integer page, Integer limit,Product product) {
 		// TODO Auto-generated method stub
 		PageHelper.startPage(page, limit);
-		List<Product> list = productMapper.pageList(page, limit);
+		List<Product> list = productMapper.pageList(product);
 		int totalCount = (int) ((Page) list).getTotal();
 		return ServerResponse.createSuccess("执行成功", totalCount, list);
 	}

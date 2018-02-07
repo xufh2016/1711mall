@@ -7,6 +7,6 @@ import com.situ.mall.common.ServerResponse;
 
 public interface IProductService {
 
-	ServerResponse<List<Product>> pageList(Integer page, Integer limit);
+	ServerResponse<List<Product>> pageList(Integer page, Integer limit, Product product);
 
 }
