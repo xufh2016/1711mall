@@ -39,8 +39,8 @@
 						class="form-control uname" placeholder="用户名" /> <input
 						type="password" id="password" name="password"
 						class="form-control pword m-b" placeholder="密码" />
-					<table>
-						<tr>
+					<table >
+						<tr style="align-content: center;align-items: center;" >
 							<td><input type="text" class="form-control" id="checkCode1"
 								name="checkCode" placeholder="验证码"></td>
 							<td><img id="checkCodeImg"

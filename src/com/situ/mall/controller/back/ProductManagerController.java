@@ -30,6 +30,18 @@ public class ProductManagerController {
 
 		return productService.pageList(page, limit,product);
 	}
+	@RequestMapping("/deleteById") 
+	@ResponseBody
+	public ServerResponse deleteById(Integer id) {
+		return productService.deleteById(id);
+	}
+	
+	@RequestMapping("/deleteBatch") 
+	@ResponseBody
+	public ServerResponse deleteBatch(String ids) {
+		
+		return productService.deleteBatch(ids);
+	}
 
 	@RequestMapping(value = "/productList")
 	public String productList() {
