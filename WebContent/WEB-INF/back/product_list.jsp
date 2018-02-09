@@ -159,7 +159,12 @@
 						});
 					});
 				} else if (layEvent === 'edit') { //编辑
-					layer.msg("查看：" + data.id);
+					layer.open({
+						type: 2,
+						area: ['800px', '300px'],
+						content: '${ctx}/manager/product/showSingleInfo.action'
+					});
+					//layer.msg("查看：" + data.id);
 				}
 			});
 

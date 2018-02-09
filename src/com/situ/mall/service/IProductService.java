@@ -13,4 +13,11 @@ public interface IProductService {
 
 	ServerResponse deleteBatch(String ids);
 
+	/**
+	 * 查看单条商品信息
+	 * @param id
+	 * @return
+	 */
+	Product showSingleInfo(Integer id);
+
 }

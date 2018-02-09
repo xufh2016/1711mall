@@ -45,4 +45,11 @@ public class ProductServiceImpl implements IProductService {
 			return ServerResponse.createSuccess("删除成功");
 		return ServerResponse.createError("删除失败");
 	}
+
+	@Override
+	public Product showSingleInfo(Integer id) {
+		// TODO Auto-generated method stub
+		Product serverResponse=productMapper.selectByPrimaryKey(id);
+		return serverResponse;
+	}
 }

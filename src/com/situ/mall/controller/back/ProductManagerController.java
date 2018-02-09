@@ -24,23 +24,30 @@ public class ProductManagerController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/pageList") 
+	@RequestMapping("/pageList")
 	@ResponseBody
-	public ServerResponse<List<Product>> pageList(Integer page, Integer limit,Product product) {
+	public ServerResponse<List<Product>> pageList(Integer page, Integer limit, Product product) {
 
-		return productService.pageList(page, limit,product);
+		return productService.pageList(page, limit, product);
 	}
-	@RequestMapping("/deleteById") 
+
+	@RequestMapping("/deleteById")
 	@ResponseBody
 	public ServerResponse deleteById(Integer id) {
 		return productService.deleteById(id);
 	}
-	
-	@RequestMapping("/deleteBatch") 
+
+	@RequestMapping("/deleteBatch")
 	@ResponseBody
 	public ServerResponse deleteBatch(String ids) {
-		
 		return productService.deleteBatch(ids);
+	}
+
+	@RequestMapping("/showSingleInfo")
+	@ResponseBody
+	public Product showSingleInfo(Integer id) {
+		Product product = productService.showSingleInfo(id);
+		return product;
 	}
 
 	@RequestMapping(value = "/productList")

@@ -3,6 +3,7 @@ package com.situ.mall.mapper;
 import java.util.List;
 
 import com.situ.mall.bean.Product;
+import com.situ.mall.common.ServerResponse;
 
 public interface ProductMapper {
 	int deleteByPrimaryKey(Integer id);
@@ -20,4 +21,6 @@ public interface ProductMapper {
 	List<Product> pageList(Product product);
 
 	int  deleteBatch(String[] ids);
+
+	ServerResponse<Product> showSingleInfo(Integer id);
 }
