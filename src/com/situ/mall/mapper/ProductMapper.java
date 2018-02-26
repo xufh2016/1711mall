@@ -23,4 +23,6 @@ public interface ProductMapper {
 	int  deleteBatch(String[] ids);
 
 	ServerResponse<Product> showSingleInfo(Integer id);
+
+	//int add(Product product);
 }

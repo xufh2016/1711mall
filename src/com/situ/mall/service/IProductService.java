@@ -20,4 +20,6 @@ public interface IProductService {
 	 */
 	Product showSingleInfo(Integer id);
 
+	ServerResponse add(Product product);
+
 }

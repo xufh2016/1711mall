@@ -17,21 +17,21 @@ public class ProductServiceImpl implements IProductService {
 
 	@Autowired
 	private ProductMapper productMapper;
-	
+
 	@Override
-	public ServerResponse<List<Product>> pageList(Integer page, Integer limit,Product product) {
+	public ServerResponse<List<Product>> pageList(Integer page, Integer limit, Product product) {
 		// TODO Auto-generated method stub
 		PageHelper.startPage(page, limit);
 		List<Product> list = productMapper.pageList(product);
 		int totalCount = (int) ((Page) list).getTotal();
 		return ServerResponse.createSuccess("执行成功", totalCount, list);
 	}
-	
+
 	@Override
 	public ServerResponse deleteById(Integer id) {
 		// TODO Auto-generated method stub
 		int i = productMapper.deleteByPrimaryKey(id);
-		if (i>0)
+		if (i > 0)
 			return ServerResponse.createSuccess("删除成功");
 		return ServerResponse.createError("删除失败");
 	}
@@ -40,8 +40,8 @@ public class ProductServiceImpl implements IProductService {
 	public ServerResponse deleteBatch(String idstr) {
 		// TODO Auto-generated method stub
 		String[] ids = idstr.split(",");
-		int count=productMapper.deleteBatch(ids);
-		if(count==ids.length)
+		int count = productMapper.deleteBatch(ids);
+		if (count == ids.length)
 			return ServerResponse.createSuccess("删除成功");
 		return ServerResponse.createError("删除失败");
 	}
@@ -49,7 +49,16 @@ public class ProductServiceImpl implements IProductService {
 	@Override
 	public Product showSingleInfo(Integer id) {
 		// TODO Auto-generated method stub
-		Product serverResponse=productMapper.selectByPrimaryKey(id);
+		Product serverResponse = productMapper.selectByPrimaryKey(id);
 		return serverResponse;
+	}
+
+	@Override
+	public ServerResponse add(Product product) {
+		// TODO Auto-generated method stub
+		int line = productMapper.insert(product);
+		if (line > 0)
+			return ServerResponse.createSuccess("添加商品成功");
+		return ServerResponse.createError("添加商品失败");
 	}
 }

@@ -50,9 +50,22 @@ public class ProductManagerController {
 		return product;
 	}
 
+	//跳转到商品列表页
 	@RequestMapping(value = "/productList")
 	public String productList() {
 		return "product_list";
+	}
+	
+	//跳转到添加商品页
+	@RequestMapping(value = "/getAddPage")
+	public String getAddPage() {
+		return "product_add";
+	}
+	
+	@RequestMapping("/add")
+	@ResponseBody
+	public ServerResponse add(Product product) {
+		return productService.add(product);
 	}
 
 }

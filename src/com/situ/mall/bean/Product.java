@@ -9,21 +9,21 @@ public class Product implements Serializable {
 
     private Integer categoryId;
 
-    private String name;
+    private String name;//商品名称
 
-    private String subtitle;
+    private String subtitle;//商品副标题
 
     private String mainImage;
 
     private String subImages;
 
-    private String detail;
+    private String detail;//商品介绍
 
-    private BigDecimal price;
+    private BigDecimal price;//商品价格
 
-    private Integer stock;
+    private Integer stock;//商品库存
 
-    private Integer status;
+    private Integer status;//商品状态，上架、下架、删除
 
     private Date createTime;
 
