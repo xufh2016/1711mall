@@ -35,4 +35,10 @@ public class CategoryServiceImpl implements ICategoryService {
 		return ServerResponse.createSuccess("查找二级分类成功", list);
 	}
 
+	@Override
+	public Integer selectParentCategoryId(Integer categoryId) {
+		// TODO Auto-generated method stub
+		return categoryMapper.selectParentCategoryId(categoryId);
+	}
+
 }

@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.situ.mall.bean.Product;
 import com.situ.mall.common.ServerResponse;
+import com.situ.mall.service.ICategoryService;
 import com.situ.mall.service.IProductService;
-
+//切换分支前，必须先用git commit提交
 @Controller
 @RequestMapping(value = "/manager/product")
 public class ProductManagerController {
@@ -19,7 +20,9 @@ public class ProductManagerController {
 	// 自动装在service
 	@Autowired
 	private IProductService productService;
-
+	@Autowired
+	private ICategoryService categoryService;
+ 
 	/**
 	 * 分页显示
 	 * 
@@ -47,14 +50,13 @@ public class ProductManagerController {
 	// 点击编辑按钮后弹出页面
 	@RequestMapping("/showSingleInfo")
 	public String showSingleInfo(Integer id, Model model) {// id:商品Id
+		
+		//根据商品ID获取商品信息
 		Product product = productService.showSingleInfo(id);
-		String secondCategoryName=productService.getSecondCategoryNameByProductId(id);
-		String topCategoryName=productService.getTopCategoryNameByProductId(id);
-		System.out.println(topCategoryName);
-		System.out.println(secondCategoryName);
+		
+		Integer parentCategoryId=categoryService.selectParentCategoryId(product.getCategoryId());
 		model.addAttribute("product", product);
-		model.addAttribute("secondCategoryName", secondCategoryName);
-		model.addAttribute("topCategoryName", topCategoryName);
+		model.addAttribute("parentCategoryId", parentCategoryId);
 		return "product_edit";
 	}
 

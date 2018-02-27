@@ -21,7 +21,6 @@
 			<input class="layui-input" name="id" id="productName"
 				autocomplete="off">
 		</div>
-		sdfsdfsdf
 		子标题：
 		<div class="layui-inline">
 			<input class="layui-input" name="id" id="productSubtitle"
@@ -219,8 +218,7 @@
 																				});
 																	});
 												} else if (layEvent === 'edit') { //编辑
-													layer
-															.open({
+													layer.open({
 																type : 2,
 																area : [
 																		'900px',
