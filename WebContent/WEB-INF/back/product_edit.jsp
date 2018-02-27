@@ -35,19 +35,9 @@
 			</div>
 
 			<div class="layui-form-item">
-				<!-- <label class="layui-form-label">商品分类</label>
-				<div class="layui-input-inline">
-					<select name="quiz1" id="topCategory" >
-						<option value="">请选择一级分类</option>
-					</select>
-				</div>
-				<div class="layui-input-inline">
-					<select name="categoryId" id="secondCategory">
-						<option value="">请选择二级分类</option>
-					</select>
-				</div> -->
 				<label class="layui-form-label">商品分类</label>
 				<div class="layui-input-inline">
+				<!-- lay-filter属性必须加上，js语句中用到  -->
 					<select name="quiz1" id="topCategory" lay-filter="topCategoryFilter">
 						<option value="">请选一级分类</option>
 					</select>
