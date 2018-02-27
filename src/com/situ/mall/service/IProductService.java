@@ -22,4 +22,12 @@ public interface IProductService {
 
 	ServerResponse add(Product product);
 
+	String getSecondCategoryNameByProductId(Integer id);
+
+	String getTopCategoryNameByProductId(Integer id);
+
+	ServerResponse updateProductById(Product product);
+
+/*	Integer getTopCategoryIdById(Integer id);*/
+
 }

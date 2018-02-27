@@ -51,8 +51,8 @@
 		#{detail,jdbcType=VARCHAR},
 		#{price,jdbcType=DECIMAL},
 		#{stock,jdbcType=INTEGER},
-		#{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
-		#{updateTime,jdbcType=TIMESTAMP}
+		#{status,jdbcType=INTEGER}, now(),
+		now()
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.situ.mall.bean.Product">
@@ -167,10 +167,11 @@
 			<if test="createTime != null">
 				create_time = #{createTime,jdbcType=TIMESTAMP},
 			</if>
-			<if test="updateTime != null">
+			<!-- <if test="updateTime != null">
 				update_time = #{updateTime,jdbcType=TIMESTAMP},
-			</if>
+			</if> -->
 		</set>
+		, update_time =now()
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.situ.mall.bean.Product">
@@ -209,9 +210,24 @@
 	<delete id="deleteBatch">
 		delete from
 		product
-		where id in 
-		<foreach collection="array" item="id" open="(" close=")" separator=",">
+		where id in
+		<foreach collection="array" item="id" open="(" close=")"
+			separator=",">
 			#{id}
 		</foreach>
 	</delete>
+	<!-- <select id="getTopCategoryIdById" parameterType="int" > select </select> -->
+	<!-- 获取二级分类名称 -->
+	<select id="getSecondCategoryNameByProductId" parameterType="int"
+		resultType="string">
+		SELECT NAME FROM category WHERE id=(SELECT category_id FROM
+		product WHERE id=#{id})
+	</select>
+	<!-- 获取一级分类名称 -->
+	<select id="getTopCategoryNameByProductId" parameterType="int"
+		resultType="string">
+		SELECT NAME FROM category WHERE id=(SELECT parent_id FROM
+		category WHERE id= (SELECT category_id FROM product WHERE id=#{id}))
+	</select>
+
 </mapper>

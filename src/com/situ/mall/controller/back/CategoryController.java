@@ -21,7 +21,6 @@ public class CategoryController {
 	@ResponseBody
 	public ServerResponse<Category> selectTopCategory() {
 		
-		
 		return categoryService.selectTopCategory();
 	}
 	
@@ -29,7 +28,6 @@ public class CategoryController {
 	@RequestMapping("/selectSecondCategory")
 	@ResponseBody
 	public ServerResponse<Category> selectSecondCategory(Integer topCategoryId) {
-		
 		
 		return categoryService.selectSecondCategory(topCategoryId);
 	}

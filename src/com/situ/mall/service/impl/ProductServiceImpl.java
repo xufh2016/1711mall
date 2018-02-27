@@ -61,4 +61,30 @@ public class ProductServiceImpl implements IProductService {
 			return ServerResponse.createSuccess("添加商品成功");
 		return ServerResponse.createError("添加商品失败");
 	}
+
+	@Override
+	public String getSecondCategoryNameByProductId(Integer id) {
+		// TODO Auto-generated method stub
+		return productMapper.getSecondCategoryNameByProductId(id);
+	}
+
+	@Override
+	public String getTopCategoryNameByProductId(Integer id) {
+		// TODO Auto-generated method stub
+		return productMapper.getTopCategoryNameByProductId(id);
+	}
+
+	@Override
+	public ServerResponse updateProductById(Product record) {
+		// TODO Auto-generated method stub
+		int line = productMapper.updateByPrimaryKeySelective(record);
+		if (line > 0)
+			return ServerResponse.createSuccess("添加商品成功");
+		return ServerResponse.createError("添加商品失败");
+	}
+
+	/*
+	 * @Override public Integer getTopCategoryIdById(Integer id) { // TODO
+	 * Auto-generated method stub return productMapper.getTopCategoryIdById(id); }
+	 */
 }

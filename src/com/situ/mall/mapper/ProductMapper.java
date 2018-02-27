@@ -24,5 +24,11 @@ public interface ProductMapper {
 
 	ServerResponse<Product> showSingleInfo(Integer id);
 
+	Integer getTopCategoryIdById(Integer id);
+
+	String getSecondCategoryNameByProductId(Integer id);
+
+	String getTopCategoryNameByProductId(Integer id);
+
 	//int add(Product product);
 }

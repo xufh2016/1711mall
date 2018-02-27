@@ -143,5 +143,9 @@
 		from category
 		where parent_id = #{topCategoryId}
 	</select>
+	
+	<select id="getTopCategoryIdById" parameterType="int" >
+		SELECT name FROM category WHERE id=(SELECT parent_id FROM category WHERE id = #{id})
+	</select>
 
 </mapper>

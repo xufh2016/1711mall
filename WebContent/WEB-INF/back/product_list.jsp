@@ -37,10 +37,15 @@
 	<script type="text/html" id="imgTpl">
   		<img src="/pic/{{d.mainImage}}">
 	</script>
+	<script type="text/html" id="statusTpl">
+  		{{#   if(d.status==1){  }}
+			上架
+		{{#   } else if(d.status==2){   }}
+			下架
+		{{#   }    }}
+	</script>
 	<script>
-		layui
-				.use(
-						'table',
+		layui.use('table',
 						function() {
 							var table = layui.table;
 							//第一个实例
@@ -91,7 +96,7 @@
 								}, {
 									field : 'status',
 									title : '商品状态',
-									sort : true
+									templet : '#statusTpl'
 								}, {
 									field : 'createTime',
 									title : '创建时间',
@@ -123,18 +128,14 @@
 									});
 								},
 								deleteBatch : function() {
-									var checkStatus = table
-											.checkStatus('listTable');
+									var checkStatus = table.checkStatus('listTable');
 									var data = checkStatus.data;
-									layer
-											.confirm(
+									layer.confirm(
 													'确定要删除这' + data.length
 															+ '条数据吗？',
 													function(index) {
-														var ids = util
-																.getSelectedIds(data);
-														$
-																.ajax({
+														var ids = util.getSelectedIds(data);
+														$.ajax({
 																	url : '${ctx}/manager/product/deleteBatch.action',
 																	data : {
 																		'ids' : ids
@@ -163,24 +164,25 @@
 
 							};
 
-							table
-									.on(
-											'tool(datagrid)',
-											function(obj) { //注：tool是工具条事件名，datagrid是table原始容器的属性 lay-filter="对应的值"
+							table.on('tool(datagrid)',function(obj) { //注：tool是工具条事件名，datagrid是table原始容器的属性 lay-filter="对应的值"
 												var data = obj.data; //获得当前行数据
 												var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
 												var tr = obj.tr; //获得当前行 tr 的DOM对象
 
 												if (layEvent === 'detail') { //查看
 													layer.msg("查看：" + data.id);
+													layer.open({
+														type : 2,
+														area : [
+																'900px',
+																'500px' ],
+														content : '${ctx}/manager/product/showProductInfo.action?id='+data.id
+													});
 												} else if (layEvent === 'del') { //删除
-													layer
-															.confirm(
+													layer.confirm(
 																	'真的删除行么',
-																	function(
-																			index) {
-																		$
-																				.ajax({
+																	function(index) {
+																		$.ajax({
 																					url : '${ctx}/manager/product/deleteById.action',
 																					data : {
 																						'id' : data.id
@@ -189,27 +191,22 @@
 																					success : function(
 																							jsonData) {
 																						if (jsonData.code == util.SUCCESS) {
-																							mylayer
-																									.success(jsonData.msg);
-																							active
-																									.search();
+																							mylayer.success(jsonData.msg);
+																							active.search();
 																						} else {
-																							mylayer
-																									.errorMsg(jsonData.msg);
+																							mylayer.errorMsg(jsonData.msg);
 																						}
-																						layer
-																								.close(index);
+																						layer.close(index);
 																					}
 																				});
 																	});
 												} else if (layEvent === 'edit') { //编辑
-													layer
-															.open({
+													layer.open({
 																type : 2,
 																area : [
-																		'800px',
-																		'300px' ],
-																content : '${ctx}/manager/product/showSingleInfo.action'
+																		'900px',
+																		'500px' ],
+																content : '${ctx}/manager/product/showSingleInfo.action?id='+data.id
 															});
 													//layer.msg("查看：" + data.id);
 												}
